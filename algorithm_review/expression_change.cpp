@@ -16,8 +16,8 @@ string change_behind(string middle){
     string behind;
     stack<char> sign;
     while(i<l){
+        char c=middle[i];
         if(middle[i]=='+'||middle[i]=='-'||middle[i]=='*'||middle[i]=='/'){
-            char c=middle[i];
             if(sign.empty())sign.push(c);
             else{
                 if(sign.top()=='(')sign.push(c);
