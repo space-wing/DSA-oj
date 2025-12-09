@@ -1,6 +1,8 @@
 #include<iostream>
 #include<cstring>
 #include<queue>
+#include<algorithm>
+#include<vector>
 using namespace std;
 const int maxn=1e5;
 //dijkstra算法求解单源最短路径
@@ -38,5 +40,31 @@ void floyd(){
 }
 
 //Kruskal算法求解最小生成树
+struct edge
+{
+    int u,v,w;
+    bool operator<(const edge a)const{
+        return w<a.w;
+    }
+};
+vector<edge> E,ans;
+int p[maxn];
+int find(int x){
+    if(p[x]!=x){
+        p[x]=find(p[x]);
+    }
+}
+void Kruskal(){
+    for(int i=0;i<n;i++)p[i]=i;
+    sort(E.begin(),E.end());
+    for(edge e:E){
+        int x=find(e.u),y=find(e.v);
+        if(x!=y){
+            p[x]=y;
+            ans.push_back(e);
+        }
+    }
+}
+
 
 //Prim算法求解最小生成树
